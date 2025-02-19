@@ -8,8 +8,8 @@ import Header from './Headers/DesktopHeader'
 import MobileHeader from './Headers/MobileHeader'
 import SearchField from './SearchField'
 
-export default function Template({ children }: { children: React.ReactNode }) {
-    const isMobile = useIsDeviceMobile()
+export default function Template({ children, isUserAgentMobile }: { children: React.ReactNode, isUserAgentMobile: boolean }) {
+    const isMobile = useIsDeviceMobile({ isUserAgentMobile })
 
     if (!isMobile || isMobile === 'true') {
         return <Container className='flex flex-col gap-5'>

@@ -1,4 +1,5 @@
 import Template from "@/components/ui/Template";
+import { getIsDeviceMobile } from "@/helpers/Device";
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
@@ -20,12 +21,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
+  const isMobileByUserAgent = await getIsDeviceMobile()
+
   return (
     <html lang="en">
       <body
         className={` ${notoSans.variable} antialiased `}
       >
-        <Template>
+        <Template isUserAgentMobile={isMobileByUserAgent}>
           {children}
         </Template>
         <NextTopLoader

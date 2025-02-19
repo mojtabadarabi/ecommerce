@@ -2,8 +2,9 @@ import { COOKIES_KEYS } from '@/statics/cookies'
 import { getCookie, setCookie } from 'cookies-next'
 import { useEffect, useState } from 'react'
 
-export default function useIsDeviceMobile() {
-    const [isMobile, setIsMobile] = useState<string>('true')
+export default function useIsDeviceMobile({ isUserAgentMobile }: { isUserAgentMobile: boolean }) {
+
+    const [isMobile, setIsMobile] = useState<string>(String(isUserAgentMobile))
 
     const getIsMobileByScreenSize = () => {
         if (window.innerWidth > 768) {
@@ -14,8 +15,8 @@ export default function useIsDeviceMobile() {
 
     const setIsMobileCookieByScreenSize = async () => {
         const isMobile = getIsMobileByScreenSize()
-        const isMobileCookie = await getCookie(COOKIES_KEYS.isMobile)
-        
+        const isMobileCookie = getCookie(COOKIES_KEYS.isMobile)
+
         setIsMobile(isMobile)
         if (!isMobileCookie || isMobileCookie !== isMobile) {
             setCookie(COOKIES_KEYS.isMobile, isMobile)
