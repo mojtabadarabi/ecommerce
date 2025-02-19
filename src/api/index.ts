@@ -3,8 +3,8 @@ import { HTTP_METHOD } from "next/dist/server/web/http"
 interface Props {
     url: string
     method?: HTTP_METHOD
-    body?: any
-    headers?: any
+    body?: unknown
+    headers?: unknown
 }
 
 export const Fetch = (props: Props) => {
@@ -15,6 +15,7 @@ export const Fetch = (props: Props) => {
     return fetch(completeUrl, {
         method,
         cache: 'force-cache',
+        // @ts-expect-error expect error
         headers,
         ...(body ? { body } : {})
     })

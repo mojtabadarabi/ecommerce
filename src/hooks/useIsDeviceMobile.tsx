@@ -3,7 +3,7 @@ import { getCookie, setCookie } from 'cookies-next'
 import { useEffect, useState } from 'react'
 
 export default function useIsDeviceMobile() {
-    const [isMobile, setIsMobile] = useState<String>('true')
+    const [isMobile, setIsMobile] = useState<string>('true')
 
     const getIsMobileByScreenSize = () => {
         if (window.innerWidth > 768) {
@@ -30,7 +30,7 @@ export default function useIsDeviceMobile() {
         return () => {
             window.removeEventListener('resize', () => setIsMobileCookieByScreenSize())
         }
-    }, [])
+    })
 
     return isMobile
 }

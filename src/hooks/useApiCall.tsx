@@ -5,11 +5,13 @@ interface Props {
     loadingFor?: string
 }
 
-export default function useApiCall(props: Props): any {
+type APICallType = [() => void, { isLoading: false | { loadingFor: string }, data: unknown }]
+
+export default function useApiCall(props: Props): APICallType {
     const { loadingFor = 'api_call', apiCall } = props
 
     const [isLoading, setIsLoading] = useState<false | { loadingFor: string }>(false)
-    const [data, setData] = useState<any>(null)
+    const [data, setData] = useState<unknown>(null)
 
     const apiCallHandler = async () => {
         try {
@@ -18,7 +20,7 @@ export default function useApiCall(props: Props): any {
             setData(apiData)
             setIsLoading(false)
         } catch (error) {
-
+            return error
         }
     }
     return [apiCallHandler, { isLoading, data }]

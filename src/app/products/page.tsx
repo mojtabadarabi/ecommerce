@@ -5,9 +5,7 @@ import MobileFilters from "@/components/filters/MobileFilters"
 import Pagination from "@/components/Pgination"
 import ProductsMapper from "@/components/products/ProductsMapper"
 import { getUniqueParams } from "@/helpers"
-import FilterIcon from "@/icons/Filter"
 
-import Link from "next/link"
 
 
 export default async function Home({
@@ -28,7 +26,7 @@ export default async function Home({
 
     return (
         <section className="flex flex-col gap-5">
-            <MobileFilters categories={categories} category={category ? getUniqueParams(category) : null}/>
+            <MobileFilters categories={categories} category={category ? getUniqueParams(category) : null} />
             <div className="flex gap-8">
                 <div className="flex-[2] md:block hidden">
                     <Filters

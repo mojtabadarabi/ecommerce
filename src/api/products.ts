@@ -19,7 +19,7 @@ export const getAllProducts = async ({ category = null, page = '1' }: { category
 }
 export const addProductToCard = async (products: { title: string }) => {
     try {
-        const response = await Fetch({
+        await Fetch({
             url: '/products',
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
